@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/static/test.css">
+
+        <script src="/static/test.js">       
+        </script>
+    </head>
+    <body>
+    <div class="container">
+        <div id="title">
+            <h1>Group projets</h1>
+        </div>
+
+        <div id="existingGroup">
+            <table>
+                <tr>
+                    <th>Group ID</th>
+                    <th>student1</th>
+                    <th>student2</th>
+                    <th>student3</th>
+                    <th>student4</th>
+                </tr>
+                {% for group in groups %}
+                <tr>
+                    <td>0</td>
+                    {% for student in group.students %}
+                    <td><span class="stname">{{ student. name }}</span>({{student.uwaID}})</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        Kick out:
+        <button type="button" class="btn btn-default stname ejectButton" onclick="ejectstudent()">
+            <span class="glyphicon glyphicon-search"></span>Eject
+        </button>
+
+        <!-- <button type="button" class="btn btn-default stname ejectButton" onclick="location.href='/create'"> -->
+        <button type="button" class="btn btn-default stname ejectButton" onclick="location.href='{{ url_for('create')}}'">
+            <span class="glyphicon glyphicon-search"></span>CreateNEW
+        </button>
+    </div>
+    </body>
+
+</html>

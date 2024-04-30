@@ -1,0 +1,57 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/static/test.css">
+
+        <script src="/static/test.js">       
+        </script>
+    </head>
+    <body>
+    <div class="container">
+        <div id="title">
+            <h1>Group projet sign-up</h1>
+        </div>
+        <div id="signupForm">
+        <p>Enter your student number</p>
+
+        <form action="/submit" method="post">
+            <label for="numberOfstudents">Number of students so far</label>
+            <!-- <input type="number" id="numberOfstudents" min=1 max=4>-->
+            <select name="numberOfstudents" id="numberOfstudents">
+                <option value=1>1</option>
+                <option value=2>2</option>
+                <option value=3>3</option>
+                <option value=4>4</option>
+            </select>
+            <br>
+
+            <label for="student1">Student 1:</label>
+            <input type="number" id="student1"></input>
+            <br>
+            <label for="student2">Student 2:</label>
+            <input type="number" id="student2"></input>
+            <br>
+            <label for="student3">Student 3:</label>
+            <input type="number" id="student3"></input>
+            <br>  
+            <label for="student4">Student 4:</label>
+            <input type="number" id="student4"></input>
+
+            <br>
+            <input class="btn btn-danger" id="submitBtn" value= "Create" type="submit">
+            
+        </form>
+    </div>
+
+        Kick out:
+        <button type="button" class="btn btn-default stname ejectButton" onclick="ejectstudent()">
+            <span class="glyphicon glyphicon-search"></span>Eject
+        </button>
+
+        <button class="btn btn-danger" onclick="location.href='{{ url_for('groups')}}'">   
+            <span class="fa fa-trash"></span>Cancel
+        </button>
+    </div>
+    </body>
+
+</html>
