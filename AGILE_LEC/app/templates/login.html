@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/static/test.css">
+
+        <script src="/static/test.js">       
+        </script>
+    </head>
+    <body>
+    <div class="container">
+        <div id="title">
+            <h1>Group projet sign-up</h1>
+        </div>
+
+        {%with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+
+        <div id="loginForm">
+        <p>Enter your student number</p>
+
+        <form action="/login" method="post">
+            {{ form.hidden_tag() }}
+
+            {{ form.uwa_id.label  }}
+            {{ form.uwa_id }}
+            <br>
+            {{ form.password.label  }}
+            {{ form.password }}
+            <br> 
+            {{ form.submit() }}            
+        </form>
+    </div>
+
+        Kick out:
+        <button type="button" class="btn btn-default stname ejectButton" onclick="ejectstudent()">
+            <span class="glyphicon glyphicon-search"></span>Eject
+        </button>
+
+        <button class="btn btn-danger" onclick="location.href='{{ url_for('groups')}}'">   
+            <span class="fa fa-trash"></span>Cancel
+        </button>
+    </div>
+    </body>
+
+</html>
