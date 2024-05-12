@@ -2,7 +2,9 @@ from flask import flash, redirect, render_template, url_for, request
 from app import flaskapp, db
 from app.model import Group, Student
 from .forms import CreateGroupForm, LoginForm
-from flask_login import login_user
+from flask_login import login_user,logout_user
+from flask_login import login_required
+
 
 
 @flaskapp.route('/')
@@ -30,20 +32,24 @@ def login():
 
 @flaskapp.route('/logout')
 def logout():
-    return None
+    logout_user()
+    return redirect(url_for('login'))
 
 @flaskapp.route('/groups')
 #for the flaskapp object, we are defining a route
+@login_required
 def groups():
     all_groups = Group.query.all()
     return render_template('listGroups.html',groups=all_groups)
 
 @flaskapp.route('/create')
+@login_required
 def create():
     form = CreateGroupForm()
     return render_template('createGroup.html',form=form)
 
 @flaskapp.route('/submit', methods=['POST'])
+
 def submit():
     form = CreateGroupForm()
     if not form.validate_on_submit():
